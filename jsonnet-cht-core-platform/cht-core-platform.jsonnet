@@ -117,19 +117,19 @@ function(
                   httpGet: {
                     path: '/',
                     port: 'http',
-                    initialDelaySeconds: 60,
-                    periodSeconds: 20,
-                    timeoutSeconds: 20,
                   },
+                  initialDelaySeconds: 60,
+                  periodSeconds: 20,
+                  timeoutSeconds: 20,
                 },
                 livenessProbe: {
                   httpGet: {
                     path: '/',
                     port: 'http',
-                    initialDelaySeconds: 60,
-                    periodSeconds: 20,
-                    timeoutSeconds: 20,
                   },
+                  initialDelaySeconds: 60,
+                  periodSeconds: 20,
+                  timeoutSeconds: 20,
                 },
                 ports: [
                   {
@@ -289,19 +289,19 @@ function(
                   httpGet: {
                     path: '/',
                     port: 'data',
-                    initialDelaySeconds: 60,
-                    periodSeconds: 20,
-                    timeoutSeconds: 20,
                   },
+                  initialDelaySeconds: 60,
+                  periodSeconds: 20,
+                  timeoutSeconds: 20,
                 },
                 livenessProbe: {
                   httpGet: {
                     path: '/',
                     port: 'data',
-                    initialDelaySeconds: 60,
-                    periodSeconds: 20,
-                    timeoutSeconds: 20,
                   },
+                  initialDelaySeconds: 60,
+                  periodSeconds: 20,
+                  timeoutSeconds: 20,
                 },
                 env: [
                   {
