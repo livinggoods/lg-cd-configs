@@ -1,5 +1,5 @@
 function(
-  chtCoreImage='gcr.io/heptio-images/ks-guestbook-demo:0.2',
+  chtCoreImage='enyachoke/medic-cli:latest',
   couchDbImage='bitnami/couchdb:2',
   containerPort=5988,
   replicas=1,
