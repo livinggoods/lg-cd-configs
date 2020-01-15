@@ -3,7 +3,7 @@ function(
   couchDbImage='bitnami/couchdb:2',
   containerPort=5988,
   replicas=1,
-  name='jsonnet-guestbook-ui',
+  name='cht-core-platform',
   servicePort=5988,
   type='ClusterIP',
   pullPolicy='Always',
@@ -20,8 +20,8 @@ function(
   dataPort=5984,
   adminPort=5986,
   volumeCapacity='5Gi',
-  ingressHost='cht-core-dev.livinggoods.net',
-  ingressCouchdbHost='cht-core-dev.livinggoods.net',
+  ingressHost=name + '-cht-core.livinggoods.net',
+  ingressCouchdbHost=name + '-couchdb.livinggoods.net',
 )
   [
     {
@@ -180,11 +180,11 @@ function(
         ],
       },
     },
-     {
+    {
       apiVersion: 'v1',
       kind: 'Service',
       metadata: {
-        name: name + '-couchdb' ,
+        name: name + '-couchdb',
       },
       spec: {
         ports: [
@@ -254,7 +254,7 @@ function(
                 name: name + '-couchdb' + 'init',
                 image: 'alpine:3.6',
                 command: ['chown', '-R', '1001:1001', '/bitnami/couchdb'],
-                 volumeMounts: [
+                volumeMounts: [
                   {
                     name: 'couchdb-data',
                     mountPath: '/bitnami/couchdb',
