@@ -169,8 +169,8 @@ function(
               paths: [
                 {
                   backend: {
-                    serviceName: name,
-                    servicePort: servicePort,
+                    serviceName: name + '-chtcore',
+                    servicePort: containerPort,
                   },
                   path: '/',
                 },
