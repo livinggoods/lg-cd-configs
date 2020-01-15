@@ -323,7 +323,7 @@ function(
       spec: {
         rules: [
           {
-            host: ingressHost,
+            host: ingressCouchdbHost,
             http: {
               paths: [
                 {
