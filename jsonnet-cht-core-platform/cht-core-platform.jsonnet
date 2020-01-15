@@ -28,7 +28,7 @@ function(
       apiVersion: 'v1',
       kind: 'Service',
       metadata: {
-        name: name,
+        name: name + '-chtcore',
       },
       spec: {
         ports: [
@@ -38,7 +38,7 @@ function(
           },
         ],
         selector: {
-          app: name,
+          app: name + '-chtcore',
         },
         type: type,
       },
@@ -47,20 +47,20 @@ function(
       apiVersion: 'apps/v1',
       kind: 'Deployment',
       metadata: {
-        name: name,
+        name: name + '-chtcore',
       },
       spec: {
         replicas: replicas,
         revisionHistoryLimit: 3,
         selector: {
           matchLabels: {
-            app: name,
+            app: name + '-chtcore',
           },
         },
         template: {
           metadata: {
             labels: {
-              app: name,
+              app: name + '-chtcore',
             },
           },
           spec: {
@@ -68,14 +68,14 @@ function(
               {
                 name: 'horti-data',
                 persistentVolumeClaim: {
-                  claimName: name + 'horti-pvc',
+                  claimName: name + '-chtcore' + '-horti-pvc',
                 },
               },
             ],
             containers: [
               {
                 image: chtCoreImage,
-                name: name,
+                name: name + '-chtcore',
                 volumeMounts: [
                   {
                     name: 'horti-data',
@@ -133,7 +133,7 @@ function(
         annotations: {
           app: name,
         },
-        name: name + 'horti-pvc',
+        name: name + '-chtcore' + '-horti-pvc',
       },
       spec: {
         accessModes: [
@@ -157,9 +157,9 @@ function(
           'nginx.ingress.kubernetes.io/proxy-body-size': '500m',
         },
         labels: {
-          app: name,
+          app: name + '-chtcore',
         },
-        name: name,
+        name: name + '-chtcore',
       },
       spec: {
         rules: [
