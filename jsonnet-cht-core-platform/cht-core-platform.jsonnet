@@ -113,6 +113,24 @@ function(
                     name: 'COUCHDB_PASSWORD',
                   },
                 ],
+                readinessProbe: {
+                  httpGet: {
+                    path: '/',
+                    port: 'http',
+                    initialDelaySeconds: 60,
+                    periodSeconds: 20,
+                    timeoutSeconds: 20,
+                  },
+                },
+                livenessProbe: {
+                  httpGet: {
+                    path: '/',
+                    port: 'http',
+                    initialDelaySeconds: 60,
+                    periodSeconds: 20,
+                    timeoutSeconds: 20,
+                  },
+                },
                 ports: [
                   {
                     name: 'http',
@@ -267,6 +285,24 @@ function(
                 image: couchDbImage,
                 imagePullPolicy: pullPolicy,
                 name: name + '-couchdb',
+                readinessProbe: {
+                  httpGet: {
+                    path: '/',
+                    port: 'data',
+                    initialDelaySeconds: 60,
+                    periodSeconds: 20,
+                    timeoutSeconds: 20,
+                  },
+                },
+                livenessProbe: {
+                  httpGet: {
+                    path: '/',
+                    port: 'data',
+                    initialDelaySeconds: 60,
+                    periodSeconds: 20,
+                    timeoutSeconds: 20,
+                  },
+                },
                 env: [
                   {
                     name: 'COUCHDB_USER',
