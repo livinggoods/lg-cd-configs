@@ -1,0 +1,27 @@
+
+cht-core:
+  chtCore:
+    buildsServer: https://build-server.lg-apps.com/_couch/builds
+    secrets: couchdb-secrets
+    chtCoreVersion: 3.6.1
+    couchDbNodeName: couchdb@127.0.0.1
+    couchDbServer: $ARGOCD_APP_NAME-lg-couchdb.$ARGOCD_APP_NAMESPACE.svc.cluster.local
+    couchDbProtocal: http
+    couchDbUser: admin
+    couchDbPort: 5984
+  ingress:
+      enabled: true
+      annotations: 
+        kubernetes.io/ingress.class: nginx
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        nginx.ingress.kubernetes.io/proxy-body-size: 500m
+        ingress.kubernetes.io/proxy-body-size: 500m
+      hosts:
+        - host: $ARGOCD_APP_NAME.livinggoods.net
+          paths:
+              - /
+
+lg-couchdb:
+  couchdb:
+    adminUser: admin
+    secrets: couchdb-secrets
