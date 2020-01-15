@@ -254,6 +254,12 @@ function(
                 name: name + '-couchdb' + 'init',
                 image: 'alpine:3.6',
                 command: ['chown', '-R', '1001:1001', '/bitnami/couchdb'],
+                 volumeMounts: [
+                  {
+                    name: 'couchdb-data',
+                    mountPath: '/bitnami/couchdb',
+                  },
+                ],
               },
             ],
             containers: [
