@@ -33,7 +33,7 @@ function(
       spec: {
         ports: [
           {
-            port: servicePort,
+            port: containerPort,
             targetPort: containerPort,
           },
         ],
