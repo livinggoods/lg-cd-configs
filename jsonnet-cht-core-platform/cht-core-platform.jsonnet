@@ -285,24 +285,6 @@ function(
                 image: couchDbImage,
                 imagePullPolicy: pullPolicy,
                 name: name + '-couchdb',
-                readinessProbe: {
-                  httpGet: {
-                    path: '/',
-                    port: 'data',
-                  },
-                  initialDelaySeconds: 60,
-                  periodSeconds: 20,
-                  timeoutSeconds: 20,
-                },
-                livenessProbe: {
-                  httpGet: {
-                    path: '/',
-                    port: 'data',
-                  },
-                  initialDelaySeconds: 60,
-                  periodSeconds: 20,
-                  timeoutSeconds: 20,
-                },
                 env: [
                   {
                     name: 'COUCHDB_USER',
