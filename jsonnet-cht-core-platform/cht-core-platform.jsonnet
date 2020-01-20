@@ -363,6 +363,9 @@ function(
       kind: 'Job',
       metadata: {
         name: name + '-config',
+        annotations:{
+          'argocd.argoproj.io/hook': 'PostSync'
+        },
       },
       spec: {
         template: {
