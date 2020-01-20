@@ -13,6 +13,7 @@ function(
   chtCoreVersion='3.6.0',
   couchDbNodeName='couchdb@127.0.0.1',
   couchDbServer='localhost',
+  chtCoreServer='localhost',
   couchDbProtocal='http',
   couchDbUser='admin',
   couchDbPort=5984,
@@ -355,6 +356,53 @@ function(
             },
           },
         ],
+      },
+    },
+    {
+      apiVersion: 'batch/v1',
+      kind: 'Job',
+      metadata: {
+        name: name + '-config',
+      },
+      spec: {
+        template: {
+          metadata: {
+            name: name + '-config',
+          },
+          spec: {
+            containers: [
+              {
+                name: name + '-config',
+                image: 'registry.livinggoods.net/medic-conf',
+                command: ['/conf/run.sh'],
+                env: [
+                  {
+                    name: 'COUCHDB_USER',
+                    value: adminUser,
+                  },
+                  {
+                    valueFrom: {
+                      secretKeyRef: {
+                        name: chtCoreSecrets,
+                        key: 'adminPassword',
+                      },
+                    },
+                    name: 'COUCHDB_PASSWORD',
+                  },
+                  {
+                    name: 'COUCHDB_SERVER',
+                    value: chtCoreServer,
+                  },
+                  {
+                    name: 'COUCHDB_PORT',
+                    value: '5988',
+                  },
+                ],
+              },
+            ],
+            restartPolicy: 'OnFailure',
+          },
+        },
       },
     },
   ]
