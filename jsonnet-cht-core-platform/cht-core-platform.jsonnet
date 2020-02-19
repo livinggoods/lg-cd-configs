@@ -1,5 +1,6 @@
 function(
   chtCoreImage='enyachoke/medic-cli:latest',
+  chtCoreConfigImage='registry.livinggoods.net/medic-conf',
   couchDbImage='bitnami/couchdb:2',
   containerPort=5988,
   replicas=1,
@@ -376,7 +377,7 @@ function(
             containers: [
               {
                 name: name + '-config',
-                image: 'registry.livinggoods.net/medic-conf',
+                image: chtCoreConfigImage,
                 command: ['/conf/run.sh'],
                 env: [
                   {
