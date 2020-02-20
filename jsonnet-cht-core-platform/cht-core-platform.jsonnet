@@ -166,6 +166,26 @@ function(
         },
       },
     },
+     {
+      apiVersion: 'v1',
+      kind: 'PersistentVolumeClaim',
+      metadata: {
+        annotations: {
+          app: name,
+        },
+        name: name + '-chtcore' + '-config-pvc',
+      },
+      spec: {
+        accessModes: [
+          'ReadWriteOnce',
+        ],
+        resources: {
+          requests: {
+            storage: '1Gi',
+          },
+        },
+      },
+    },
     {
       apiVersion: 'extensions/v1beta1',
       kind: 'Ingress',
@@ -374,11 +394,25 @@ function(
             name: name + '-config',
           },
           spec: {
+            volumes: [
+              {
+                name: 'config-data',
+                persistentVolumeClaim: {
+                  claimName: name + '-chtcore' + '-config-pvc',
+                },
+              },
+            ],
             containers: [
               {
                 name: name + '-config',
                 image: chtCoreConfigImage,
                 command: ['/conf/run.sh'],
+                volumeMounts: [
+                  {
+                    name: 'config-data',
+                    mountPath: '/opt',
+                  },
+                ],
                 env: [
                   {
                     name: 'COUCHDB_USER',
@@ -392,6 +426,28 @@ function(
                       },
                     },
                     name: 'COUCHDB_PASSWORD',
+                  },
+                  {
+                    valueFrom: {
+                      secretKeyRef: {
+                        name: 'aws-secrets',
+                        key: 'aws_access_key_id',
+                      },
+                    },
+                    name: 'AWS_ACCESS_KEY_ID',
+                  },
+                  {
+                    valueFrom: {
+                      secretKeyRef: {
+                        name: 'aws-secrets',
+                        key: 'aws_secret_access_key',
+                      },
+                    },
+                    name: 'AWS_SECRET_ACCESS_KEY',
+                  },
+                  {
+                    name: 'S3_BUCKET',
+                    value: 's3://lg-user-configs',
                   },
                   {
                     name: 'COUCHDB_SERVER',
