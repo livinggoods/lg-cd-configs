@@ -1,6 +1,6 @@
 function(
   chtCoreImage='enyachoke/medic-cli:latest',
-  chtCoreConfigImage='registry.livinggoods.net/medic-conf:build-a511d86',
+  chtCoreConfigImage='registry.livinggoods.net/medic-conf:build-d1ace66',
   couchDbImage='bitnami/couchdb:2',
   containerPort=5988,
   replicas=1,
