@@ -1,5 +1,5 @@
 function(
-  chtCoreImage='enyachoke/medic-cli:latest',
+  chtCoreImage='registry.livinggoods.net/cht-core:3.6.0',
   chtCoreConfigImage='registry.livinggoods.net/medic-conf:travis-testing',
   couchDbImage='bitnami/couchdb:2',
   containerPort=5988,
