@@ -1,6 +1,6 @@
 function(
   chtCoreImage='registry.livinggoods.net/cht-core:3.6.0',
-  chtCoreConfigImage='registry.livinggoods.net/medic-conf:build-b65e306',
+  chtCoreConfigImage='registry.livinggoods.net/medic-conf:build-5a7f651',
   couchDbImage='bitnami/couchdb:2',
   containerPort=5988,
   replicas=1,
@@ -166,7 +166,7 @@ function(
         },
       },
     },
-     {
+    {
       apiVersion: 'v1',
       kind: 'PersistentVolumeClaim',
       metadata: {
@@ -195,6 +195,7 @@ function(
           'kubernetes.io/ingress.class': 'nginx',
           'nginx.ingress.kubernetes.io/force-ssl-redirect': 'true',
           'nginx.ingress.kubernetes.io/proxy-body-size': '500m',
+          'cert-manager.io/cluster-issuer': 'letsencrypt-prod',
         },
         labels: {
           app: name + '-chtcore',
@@ -202,6 +203,14 @@ function(
         name: name + '-chtcore',
       },
       spec: {
+        tls: [
+          {
+            hosts: [
+              ingressHost,
+            ],
+            secretName: name + '-chtcore-tls',
+          },
+        ],
         rules: [
           {
             host: ingressHost,
@@ -354,6 +363,8 @@ function(
           'kubernetes.io/ingress.class': 'nginx',
           'nginx.ingress.kubernetes.io/force-ssl-redirect': 'true',
           'nginx.ingress.kubernetes.io/proxy-body-size': '500m',
+          'cert-manager.io/cluster-issuer': 'letsencrypt-prod',
+
         },
         labels: {
           app: name + '-couchdb',
@@ -361,6 +372,14 @@ function(
         name: name + '-couchdb',
       },
       spec: {
+        tls: [
+          {
+            hosts: [
+              ingressCouchdbHost,
+            ],
+            secretName: name + '-couchdb-tls',
+          },
+        ],
         rules: [
           {
             host: ingressCouchdbHost,
@@ -384,8 +403,8 @@ function(
       kind: 'Job',
       metadata: {
         name: name + '-config',
-        annotations:{
-          'argocd.argoproj.io/hook': 'PostSync'
+        annotations: {
+          'argocd.argoproj.io/hook': 'PostSync',
         },
       },
       spec: {
