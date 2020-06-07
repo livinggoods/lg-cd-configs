@@ -21,7 +21,7 @@ function(
   adminUser='admin',
   dataPort=5984,
   adminPort=5986,
-  volumeCapacity='5Gi',
+  volumeCapacity='2Gi',
   ingressHost=name + '-cht-core.livinggoods.net',
   ingressCouchdbHost=name + '-couchdb.livinggoods.net',
 )
