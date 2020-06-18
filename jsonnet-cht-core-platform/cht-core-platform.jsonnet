@@ -1,6 +1,6 @@
 function(
   chtCoreImage='registry.livinggoods.net/cht-core:3.6.0',
-  chtCoreConfigImage='registry.livinggoods.net/medic-conf:build-843ad74',
+  chtCoreConfigImage='registry.livinggoods.net/medic-conf:build-be38b26',
   couchDbImage='bitnami/couchdb:2',
   containerPort=5988,
   replicas=1,
@@ -21,7 +21,7 @@ function(
   adminUser='admin',
   dataPort=5984,
   adminPort=5986,
-  volumeCapacity='5Gi',
+  volumeCapacity='2Gi',
   ingressHost=name + '-cht-core.livinggoods.net',
   ingressCouchdbHost=name + '-couchdb.livinggoods.net',
 )
