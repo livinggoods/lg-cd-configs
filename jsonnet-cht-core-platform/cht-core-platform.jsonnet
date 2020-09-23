@@ -1,6 +1,6 @@
 function(
   chtCoreImage='registry.livinggoods.net/cht-core:3.6.0',
-  chtCoreConfigImage='registry.livinggoods.net/medic-conf:aaee2692',
+  chtCoreConfigImage='registry.livinggoods.net/medic-conf:f1e7ce63',
   couchDbImage='bitnami/couchdb:2',
   containerPort=5988,
   replicas=1,
