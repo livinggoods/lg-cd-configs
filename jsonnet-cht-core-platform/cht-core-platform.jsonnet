@@ -90,10 +90,6 @@ function(
                     value: couchDbUser,
                   },
                   {
-                    name: 'HORTI_BUILDS_SERVER',
-                    value: buildsServer,
-                  },
-                  {
                     name: 'COUCHDB_SERVER',
                     value: couchDbServer,
                   },
