@@ -1,6 +1,6 @@
 function(
   chtCoreImage='registry.livinggoods.net/cht-core:3.6.0',
-  chtCoreConfigImage='registry.livinggoods.net/medic-conf:build-9ded623',
+  chtCoreConfigImage='registry.livinggoods.net/medic-conf:build-be022ab',
   couchDbImage='bitnami/couchdb:2',
   containerPort=5988,
   replicas=1,
@@ -88,10 +88,6 @@ function(
                   {
                     name: 'COUCHDB_USER',
                     value: couchDbUser,
-                  },
-                  {
-                    name: 'HORTI_BUILDS_SERVER',
-                    value: buildsServer,
                   },
                   {
                     name: 'COUCHDB_SERVER',
