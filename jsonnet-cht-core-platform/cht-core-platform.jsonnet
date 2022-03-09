@@ -1,6 +1,6 @@
 function(
   chtCoreImage='katria47/medic-os:1.0.0',
-  chtCoreConfigImage='registry.livinggoods.net/medic-conf:build-be022ab',
+  chtCoreConfigImage='registry.livinggoods.net/medic-conf:build-8b8b36f',
   couchDbImage='bitnami/couchdb:2',
   containerPort=5988,
   replicas=1,
